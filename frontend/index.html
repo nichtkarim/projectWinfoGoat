@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kleine Podman Webapp</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('http://localhost:5000/api/user')  // Hole die Benutzerdaten von der API
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('username').textContent = data.name;
+                })
+                .catch(error => console.error('Fehler:', error));
+        });
+    </script>
+</head>
+<body>
+    <h1>Willkommen, <span id="username">...</span></h1>
+</body>
+</html>

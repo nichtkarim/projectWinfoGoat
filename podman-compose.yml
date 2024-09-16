@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_PATH=/db/users.db  # Pfad zur Datenbank in Volume
+    volumes:
+      - ./database:/db  # Mountet die Datenbank in den Backend-Container
+
+  database:
+    build: ./database
+    volumes:
+      - ./database:/db  # Nutzt das Volume, um die Datenbankdatei bereitzustellen
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
